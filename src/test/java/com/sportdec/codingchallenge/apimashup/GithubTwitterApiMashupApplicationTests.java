@@ -1,4 +1,4 @@
-package com.sportdec.codingchallenge.githubtwitterapimashup;
+package com.sportdec.codingchallenge.apimashup;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
