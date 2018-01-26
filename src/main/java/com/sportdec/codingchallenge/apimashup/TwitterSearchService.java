@@ -9,8 +9,15 @@ import org.springframework.social.twitter.api.Twitter;
 import org.springframework.social.twitter.api.impl.TwitterTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+
+/**
+ * Service to search for tweets on Twitter using the <a href="https://developer.twitter.com/en/docs/tweets/search/overview/standard">Twitter Standard Search API</a>
+ */
 @Service
 public class TwitterSearchService {
+
+    private static final String URL_SEARCH_PREFIX = "url:";
 
     private static Logger LOGGER = LoggerFactory.getLogger(TwitterSearchService.class);
 
@@ -20,10 +27,16 @@ public class TwitterSearchService {
     @Value("${app.twitterConfig.consumerSecret}")
     private String CONSUMER_SECRET;
 
+    private Twitter api;
 
-    public void search(String query) {
-        Twitter twitter = new TwitterTemplate(CONSUMER_KEY, CONSUMER_SECRET);
-        SearchResults results = twitter.searchOperations().search(query);
-        LOGGER.info(results.getTweets().get(0).getText());
+    @PostConstruct
+    public void init() {
+        api = new TwitterTemplate(CONSUMER_KEY, CONSUMER_SECRET);
+    }
+
+    public SearchResults searchTweetsWithUrl(String urlSubstring) {
+        //TODO: ErrorHandler (someting built in with spring social)
+        LOGGER.debug("Search tweet with url containing: {}", urlSubstring);
+        return api.searchOperations().search(URL_SEARCH_PREFIX + urlSubstring);
     }
 }

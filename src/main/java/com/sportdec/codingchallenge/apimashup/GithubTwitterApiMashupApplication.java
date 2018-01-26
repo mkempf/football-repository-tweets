@@ -10,7 +10,6 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class GithubTwitterApiMashupApplication {
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(GithubTwitterApiMashupApplication.class, args);
 	}
@@ -20,12 +19,4 @@ public class GithubTwitterApiMashupApplication {
         return builder.build();
     }
 
-
-	@Bean
-	public CommandLineRunner run(GitHubSearchService gitHubSearchService, TwitterSearchService twitterSearchService) {
-		return args -> {
-			System.out.println(gitHubSearchService.searchRepository("Football"));
-			twitterSearchService.search("https://github.com/facebook/react/pull/11818");
-		};
-	}
 }
