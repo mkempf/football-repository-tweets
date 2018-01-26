@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import javax.inject.Inject;
 
 @Component
-@Profile("!test")
+@Profile("!test") // prevent from running during tests
 public class FootballRepositoryTweetsRunner implements CommandLineRunner{
 
     @Inject
@@ -15,7 +15,6 @@ public class FootballRepositoryTweetsRunner implements CommandLineRunner{
 
     @Inject
     private GitHubRepositoryTweetPrinter printer;
-
 
     @Override
     public void run(String... args) throws Exception {
