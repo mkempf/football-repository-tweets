@@ -20,10 +20,12 @@ public class GithubTwitterApiMashupApplication {
         return builder.build();
     }
 
+
 	@Bean
-	public CommandLineRunner run(GitHubSearchService searchService) {
+	public CommandLineRunner run(GitHubSearchService gitHubSearchService, TwitterSearchService twitterSearchService) {
 		return args -> {
-			searchService.searchRepository("Football");
+			System.out.println(gitHubSearchService.searchRepository("Football"));
+			twitterSearchService.search("https://github.com/facebook/react/pull/11818");
 		};
 	}
 }

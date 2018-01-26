@@ -6,3 +6,7 @@ target/
 *.iws
 *.iml
 *.ipr
+
+
+### Development secrets ###
+application-dev.yml
