@@ -7,6 +7,8 @@ target/
 *.iml
 *.ipr
 
+### logs ###
+application.log
 
 ### Development secrets ###
 application-dev.yml
